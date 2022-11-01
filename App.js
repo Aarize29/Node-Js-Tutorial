@@ -1,11 +1,37 @@
-//About npm :- Node Package Manager ;
+const {readFile,writeFile} = require('fs');
+const { reject, result } = require('lodash');
+const { resolve } = require('path');
+const util=require('util');
+const readFilePromise=util.promisify(readFile);
+const writeFilePromise=util.promisify(writeFile);
 
 
-const _ =require('lodash');
 
-const items=[1,[2,[3,[4]]]]
-const newItems =_.flattenDeep(items);
-console.log(items);
-console.log(newItems);
-console.log("Hello Aarize Welcome to node JS tutorial")
-console.log("Hello Aarize Thors DSA bhi krlo")
+const start=async()=>{
+    try {
+        const first=await readFilePromise('./content/first.txt','utf8')
+        const second=await readFilePromise('./content/second.txt','utf8')
+        console.log(first, second);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+start();
+
+
+// const getText=(path)=>{
+//     return new Promise((resolve,reject)=>{
+//         readFile(path,'utf8',(err,data)=>{
+//             if(err){
+//                reject(err);
+//             }
+//             else{
+//                 resolve(data);
+//             }
+//         })
+//     })
+// }
+
+
+// getText('./content/first.txt').then((result)=>console.log(result)).catch((err)=>console.log(err))
